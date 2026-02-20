@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Journeys UK | Expert Career & Education Consultancy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        royal: {
+                            50: '#f0f4ff',
+                            100: '#e0e9ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'slide-in-right': 'slideInRight 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blob {
+            position: absolute;
+            filter: blur(40px);
+            opacity: 0.4;
+            animation: move 20s infinite alternate;
+        }
+        
+        @keyframes move {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(20px, -20px) scale(1.1); }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 overflow-x-hidden bg-gray-50">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-royal-900 rounded-lg flex items-center justify-center text-white font-serif text-xl font-bold">P</div>
+                <span class="font-serif text-2xl font-bold text-royal-900">Pathway<span class="text-gold-500">UK</span></span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#services" class="text-gray-700 hover:text-royal-600 font-medium transition-colors">Services</a>
+                <a href="#process" class="text-gray-700 hover:text-royal-600 font-medium transition-colors">Our Process</a>
+                <a href="#success" class="text-gray-700 hover:text-royal-600 font-medium transition-colors">Success Stories</a>
+                <a href="#contact" class="bg-royal-900 text-white px-6 py-2.5 rounded-full font-medium hover:bg-royal-800 transition-all transform hover:scale-105">
+                    Free Consultation
+                </a>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-royal-900 text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 px-6">
+            <a href="#services" class="block py-3 text-gray-700 hover:text-royal-600">Services</a>
+            <a href="#process" class="block py-3 text-gray-700 hover:text-royal-600">Our Process</a>
+            <a href="#success" class="block py-3 text-gray-700 hover:text-royal-600">Success Stories</a>
+            <a href="#contact" class="block py-3 text-royal-600 font-bold">Free Consultation</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-br from-royal-50 via-white to-gold-50">
+        <!-- Animated Background Blobs -->
+        <div class="blob bg-blue-300 w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="blob bg-yellow-200 w-80 h-80 rounded-full bottom-0 right-0 translate-x-1/3 translate-y-1/3 animation-delay-2000"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="space-y-8 animate-fade-in-up">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur rounded-full border border-royal-100 text-royal-800 text-sm font-medium">
+                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    Trusted by 500+ Students & Professionals
+                </div>
+                
+                <h1 class="font-serif text-5xl lg:text-7xl font-bold text-royal-900 leading-tight">
+                    Your Gateway to <br>
+                    <span class="gradient-text">UK Success</span>
+                </h1>
+                
+                <p class="text-xl text-gray-600 leading-relaxed max-w-lg">
+                    Expert consultancy for career placement and university admissions. We transform aspirations into offers at top UK companies and institutions.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="scrollToSection('contact')" class="bg-royal-900 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-royal-800 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2">
+                        Start Your Journey
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button onclick="scrollToSection('services')" class="bg-white text-royal-900 border-2 border-royal-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-royal-50 transition-all flex items-center justify-center gap-2">
+                        Explore Services
+                    </button>
+                </div>
+                
+                <div class="flex items-center gap-6 pt-4">
+                    <div class="flex -space-x-3">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
+                    </div>
+                    <div class="text-sm">
+                        <div class="flex text-gold-500 mb-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600">4.9/5 from 200+ reviews</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative lg:h-[600px] flex items-center justify-center">
+                <div class="absolute inset-0 bg-gradient-to-tr from-royal-200 to-gold-200 rounded-full opacity-30 blur-3xl animate-pulse"></div>
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=1000&fit=crop" 
+                     alt="UK University" 
+                     class="relative z-10 rounded-3xl shadow-2xl w-full max-w-md object-cover h-[500px] animate-float">
+                
+                <!-- Floating Cards -->
+                <div class="absolute top-20 -left-4 bg-white p-4 rounded-2xl shadow-xl animate-float" style="animation-delay: 1s;">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                            <i class="fas fa-check-circle text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800">Offer Received</p>
+                            <p class="text-sm text-gray-500">Oxford University</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="absolute bottom-20 -right-4 bg-white p-4 rounded-2xl shadow-xl animate-float" style="animation-delay: 2s;">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-royal-100 rounded-full flex items-center justify-center text-royal-600">
+                            <i class="fas fa-briefcase text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800">Job Placed</p>
+                            <p class="text-sm text-gray-500">Goldman Sachs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-royal-900 text-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="scroll-reveal">
+                    <div class="text-4xl lg:text-5xl font-serif font-bold text-gold-400 mb-2 counter" data-target="500">0</div>
+                    <p class="text-royal-100">Successful Placements</p>
+                </div>
+                <div class="scroll-reveal" style="transition-delay: 100ms;">
+                    <div class="text-4xl lg:text-5xl font-serif font-bold text-gold-400 mb-2 counter" data-target="98">0</div>
+                    <p class="text-royal-100">% Success Rate</p>
+                </div>
+                <div class="scroll-reveal" style="transition-delay: 200ms;">
+                    <div class="text-4xl lg:text-5xl font-serif font-bold text-gold-400 mb-2 counter" data-target="50">0</div>
+                    <p class="text-royal-100">Partner Universities</p>
+                </div>
+                <div class="scroll-reveal" style="transition-delay: 300ms;">
+                    <div class="text-4xl lg:text-5xl font-serif font-bold text-gold-400 mb-2 counter" data-target="15">0</div>
+                    <p class="text-royal-100">Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-royal-900 mb-6">Comprehensive UK Solutions</h2>
+                <p class="text-xl text-gray-600">Whether you're seeking your dream career or academic excellence, we provide end-to-end support tailored to your ambitions.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Career Services -->
+                <div class="group relative bg-gradient-to-br from-royal-50 to-white p-8 rounded-3xl border border-royal-100 card-hover scroll-reveal">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-royal-100 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50 group-hover:scale-150 transition-transform duration-500"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-royal-900 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 group-hover:rotate-12 transition-transform">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        
+                        <h3 class="font-serif text-2xl font-bold text-royal-900 mb-4">Career Placement</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Land your dream job in the UK with our comprehensive career services. From CV optimization to interview coaching, we prepare you for success.</p>
+                        
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <i class="fas fa-check text-green-500"></i>
+                                <span>CV & LinkedIn Optimization</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <i class="fas fa-check text-green-500"></i>
+                                <span>Interview Preparation & Mock Sessions</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <i class="fas fa-check text-green-500"></i>
+                                <span>Direct Employer Connections</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <i class="fas fa-check text-green-500"></i>
+                                <span>Visa & Work Permit Guidance</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="text-royal-600 font-semibold flex items-center gap-2 group-hover:gap-4 transition-all">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Education Services -->
+                <div class="group relative bg-gradient-to-br from-gold-50 to-white p-8 rounded-3xl border border-gold-100 card-hover scroll-reveal" style="transition-delay: 200ms;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold-100 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50 group-hover:scale-150 transition-transform duration-500"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-gold-500 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 group-hover:rotate-12 transition-transform">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        
+                        <h3 class="font-serif text-2xl font-bold text-royal-900 mb-4">University Admissions</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Secure your place at top UK universities. Our education consultants have insider knowledge of Oxbridge, Russell Group, and specialized institutions.</p>
+                        
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <i class="fas fa-check text-gold-500"></i>
+                                <span>Personal Statement Excellence</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <i class="fas fa-check text-gold-500"></i>
+                                <span>University Shortlisting Strategy</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <i class="fas fa-check text-gold-500"></i>
+                                <span>Application Management</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <i class="fas fa-check text-gold-500"></i>
+                                <span>Scholarship & Funding Support</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="text-gold-600 font-semibold flex items-center gap-2 group-hover:gap-4 transition-all">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-royal-900 mb-6">Your Journey to Success</h2>
+                <p class="text-xl text-gray-600">A proven 4-step process that has helped hundreds achieve their UK dreams.</p>
+            </div>
+            
+            <div class="relative">
+                <!-- Connecting Line -->
+                <div class="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-royal-100 -translate-y-1/2 z-0"></div>
+                
+                <div class="grid md:grid-cols-4 gap-8 relative z-10">
+                    <!-- Step 1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-lg scroll-reveal group hover:-translate-y-2 transition-transform">
+                        <div class="w-12 h-12 bg-royal-900 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 mx-auto group-hover:scale-110 transition-transform">1</div>
+                        <h3 class="font-serif text-xl font-bold text-center text-royal-900 mb-3">Discovery</h3>
+                        <p class="text-gray-600 text-center text-sm">In-depth consultation to understand your goals, skills, and aspirations.</p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-lg scroll-reveal group hover:-translate-y-2 transition-transform" style="transition-delay: 150ms;">
+                        <div class="w-12 h-12 bg-royal-800 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 mx-auto group-hover:scale-110 transition-transform">2</div>
+                        <h3 class="font-serif text-xl font-bold text-center text-royal-900 mb-3">Strategy</h3>
+                        <p class="text-gray-600 text-center text-sm">Customized roadmap targeting specific universities or employers.</p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-lg scroll-reveal group hover:-translate-y-2 transition-transform" style="transition-delay: 300ms;">
+                        <div class="w-12 h-12 bg-royal-700 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 mx-auto group-hover:scale-110 transition-transform">3</div>
+                        <h3 class="font-serif text-xl font-bold text-center text-royal-900 mb-3">Preparation</h3>
+                        <p class="text-gray-600 text-center text-sm">Intensive coaching, document preparation, and application crafting.</p>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-lg scroll-reveal group hover:-translate-y-2 transition-transform" style="transition-delay: 450ms;">
+                        <div class="w-12 h-12 bg-gold-500 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 mx-auto group-hover:scale-110 transition-transform">4</div>
+                        <h3 class="font-serif text-xl font-bold text-center text-royal-900 mb-3">Success</h3>
+                        <p class="text-gray-600 text-center text-sm">Offer acceptance, visa guidance, and pre-departure preparation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section id="success" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-royal-900 mb-6">Success Stories</h2>
+                <p class="text-xl text-gray-600">Real results from real clients who transformed their careers and education.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Story 1 -->
+                <div class="bg-gray-50 p-8 rounded-3xl scroll-reveal card-hover">
+                    <div class="flex items-center gap-1 text-gold-500 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">"Great Journeys UK helped me secure a position at a top London fintech firm within 3 months. Their interview coaching was exceptional."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" class="w-12 h-12 rounded-full object-cover" alt="Client">
+                        <div>
+                            <p class="font-bold text-royal-900">James Chen</p>
+                            <p class="text-sm text-gray-500">Investment Banking, HSBC</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Story 2 -->
+                <div class="bg-gray-50 p-8 rounded-3xl scroll-reveal card-hover" style="transition-delay: 150ms;">
+                    <div class="flex items-center gap-1 text-gold-500 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">"From personal statement to interview prep, they guided me to an offer from Imperial College London. Forever grateful!"</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="w-12 h-12 rounded-full object-cover" alt="Client">
+                        <div>
+                            <p class="font-bold text-royal-900">Tosin Janajala</p>
+                            <p class="text-sm text-gray-500">MSc Engineering, Imperial</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Story 3 -->
+                <div class="bg-gray-50 p-8 rounded-3xl scroll-reveal card-hover" style="transition-delay: 300ms;">
+                    <div class="flex items-center gap-1 text-gold-500 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">"As an international student, the visa process seemed daunting. Pathway made it seamless and helped me land a tech role."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" class="w-12 h-12 rounded-full object-cover" alt="Client">
+                        <div>
+                            <p class="font-bold text-royal-900">Raj Patel</p>
+                            <p class="text-sm text-gray-500">Software Engineer, Via UK</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-24 bg-royal-900 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.4\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        </div>
+        
+        <div class="max-w-5xl mx-auto px-6 lg:px-12 text-center relative z-10 scroll-reveal">
+            <h2 class="font-serif text-4xl lg:text-6xl font-bold text-white mb-6">Ready to Start Your UK Journey?</h2>
+            <p class="text-xl text-royal-100 mb-10 max-w-2xl mx-auto">Book a free 30-minute consultation with our experts. Discuss your goals and discover how we can help you achieve them.</p>
+            
+            <form class="max-w-md mx-auto bg-white/10 backdrop-blur-lg p-8 rounded-3xl border border-white/20" onsubmit="handleSubmit(event)">
+                <div class="space-y-4">
+                    <input type="text" placeholder="Your Name" required class="w-full px-6 py-4 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-gold-400 outline-none text-gray-800 placeholder-gray-500">
+                    <input type="email" placeholder="Email Address" required class="w-full px-6 py-4 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-gold-400 outline-none text-gray-800 placeholder-gray-500">
+                    <select class="w-full px-6 py-4 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-gold-400 outline-none text-gray-800">
+                        <option>I'm interested in...</option>
+                        <option>Job Placement</option>
+                        <option>University Admissions</option>
+                        <option>Both</option>
+                    </select>
+                    <button type="submit" class="w-full bg-gold-500 hover:bg-gold-400 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg">
+                        Book Free Consultation
+                    </button>
+                </div>
+                <p class="text-royal-100 text-sm mt-4">No commitment required. Cancel anytime.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-royal-900 font-serif text-xl font-bold">P</div>
+                        <span class="font-serif text-2xl font-bold">Great Journeys<span class="text-gold-500">UK</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-sm">Empowering professionals and students to achieve their UK career and education goals through expert guidance and personalized support.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-royal-600 transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-royal-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-royal-600 transition-colors"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Services</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Career Coaching</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">CV Writing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">University Admissions</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Visa Guidance</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Contact</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-gold-500"></i> hello@greatjourneysuk.com</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-phone text-gold-500"></i> +44 7798898429</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-gold-500"></i> London, United Kingdom</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">© 2026 Great Journeys UK Consultancy. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-gray-500">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scroll function
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                mobileMenu.classList.add('hidden');
+            }
+        }
+        
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Trigger counters if it's a counter element
+                    if (entry.target.querySelector('.counter')) {
+                        animateCounters(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+        
+        // Counter animation
+        function animateCounters(container) {
+            const counters = container.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + (target === 98 ? '' : '+');
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+        
+        // Form submission handler
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            
+            btn.textContent = 'Booking...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.textContent = 'Consultation Booked!';
+                btn.classList.remove('bg-gold-500', 'hover:bg-gold-400');
+                btn.classList.add('bg-green-500');
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    btn.classList.add('bg-gold-500', 'hover:bg-gold-400');
+                    btn.classList.remove('bg-green-500');
+                    e.target.reset();
+                }, 3000);
+            }, 1500);
+        }
+        
+        // Add smooth scroll to all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
